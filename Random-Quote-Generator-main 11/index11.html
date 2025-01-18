@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="quote-container">
+        <img src="AtsukoSato.jpg" alt="Background Image" id="quote-image"> 
+        <div class="quote-overlay"></div> 
+        <div id="quote" class="quote"></div>
+        <div id="author" class="author"></div>
+        <div class="buttons">
+            <button onclick="generateQuote()" class="btn">Generate Quote</button>
+            <button onclick="tweetQuote()" class="btn">Tweet This Quote</button>
+            <button onclick="downloadQuote()" class="btn">Download Quote</button>
+        </div>
+    </div>
+
+    <canvas id="canvas" width="600" height="400"></canvas> 
+
+    <script src="script.js"></script>
+</body>
+</html>
+

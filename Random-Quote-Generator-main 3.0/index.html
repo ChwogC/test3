@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Quote Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #444;
+    }
+
+    .quote-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .quote {
+      font-size: 1.5em;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .author {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 1em;
+      color: white;
+      background: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="quote-container">
+    <div id="quote" class="quote">"Strive not to be a success, but rather to be of value."</div>
+    <div id="author" class="author">- Albert Einstein</div>
+    <div class="buttons">
+      <button onclick="generateQuote()" class="btn">Generate Quote</button>
+      <button onclick="tweetQuote()" class="btn">Tweet This Quote</button>
+      <button onclick="downloadQuote()" class="btn">Download Quote</button>
+    </div>
+  </div>
+
+  <script>
+    const quotes = [
+      {
+        quote: "Strive not to be a success, but rather to be of value.",
+        author: "Albert Einstein",
+      },
+      {
+        quote: "Life is what happens when you're busy making other plans.",
+        author: "John Lennon",
+      },
+      {
+        quote: "The best way to predict the future is to create it.",
+        author: "Peter Drucker",
+      },
+      {
+        quote: "The purpose of our lives is to be happy.",
+        author: "Dalai Lama",
+      },
+    ];
+
+    function generateQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+      document.getElementById('quote').innerText = `"${randomQuote.quote}"`;
+      document.getElementById('author').innerText = `- ${randomQuote.author}`;
+    }
+
+    function tweetQuote() {
+      const quote = document.getElementById('quote').innerText;
+      const author = document.getElementById('author').innerText;
+      const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(quote + " " + author)}`;
+      window.open(tweetUrl, "_blank");
+    }
+
+    function downloadQuote() {
+      const quoteText = document.getElementById('quote').innerText;
+      const quoteAuthor = document.getElementById('author').innerText;
+      const content = `${quoteText}\n${quoteAuthor}`;
+      const blob = new Blob([content], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'quote.txt';
+      link.click();
+    }
+  </script>
+</body>
+</html>
